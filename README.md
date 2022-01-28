@@ -81,7 +81,7 @@
       </li>
       <dd>Fanarts do grandioso mestre Ednaldo Pereira, talvez algum dia disponível em uma API...</dd>
       <li type="none">
-         <!-- serverinfo -->
+         <!-- foto -->
          <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Media/foto.js">
          foto
          </a> 
