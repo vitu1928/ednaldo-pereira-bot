@@ -1,6 +1,6 @@
 
   <h1 align="center">ednaldo-pereira-bot</h1>
-<p align="center">
+<div align="center">
   <!-- Header -->
   <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-%2398C611?style=for-the-badge" />
   
@@ -26,7 +26,7 @@
   <ul>
 <!-- Dev -->
     <dl><strong>Dev</strong></dl>
-    <li type="circle">
+    <li type="none">
       <!-- eval -->
       <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Dev/eval.js">
         eval
@@ -35,14 +35,14 @@
     <dd>Para os desenvolvedores executarem códigos</dd><br>
 <!-- Fun -->
     <dl><strong>Fun</strong></dl>
-    <li type="circle"> 
+    <li type="none"> 
       <!-- atacar -->
       <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Fun/atacar.js">
         atacar
       </a>
     </li>
     <dd>Ataque membros com o grandioso poder do mestre</dd>
-    <li type="circle"> 
+    <li type="none"> 
       <!-- hojeé -->
       <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Fun/atacar.js">
         hojeé
@@ -50,7 +50,7 @@
     </li>
     <dd>Sabe dizer que dia da semana é hoje? Eu queria mudar eu queria mudar :musical_note:</dd>
     <!-- web -->
-    <li type="circle">
+    <li type="none">
           <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Fun/web.js">
             web
           </a>
@@ -58,14 +58,14 @@
     <dd>Fazer com que membros falem algo</dd><br>
 <!-- Information -->
     <dl><strong>Information</strong></dl>
-    <li type="circle"> 
+    <li type="none"> 
       <!-- avatar -->
       <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Information/avatar.js">
         avatar
       </a>
     </li>
     <dd>Pegar o avatar de algum membro (tamanhos permitidos: 16, 32, 64, 128, 256, 512, 1024, 2048, 4096)</dd>
-    <li type="circle"> 
+    <li type="none"> 
       <!-- serverinfo -->
       <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Information/serverinfo.js">
         serverinfo
@@ -74,14 +74,14 @@
     <dd>Ver as informações gerais do servidor</dd><br>
 <!-- Media -->
     <dl><strong>Media</strong></dl>
-    <li type="circle"> 
+    <li type="none"> 
       <!-- avatar -->
       <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Media/fanart.js">
         fanart
       </a>
     </li>
     <dd>Fanarts do grandioso mestre Ednaldo Pereira, talvez algum dia disponível em uma API...</dd>
-    <li type="circle"> 
+    <li type="none"> 
       <!-- serverinfo -->
       <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Media/foto.js">
         foto
@@ -90,14 +90,14 @@
     <dd>Fotos do rosto do mestre (só não olhe de mais) </dd><br>
 <!-- Moderation -->
     <dl><strong>Moderation</strong></dl>
-    <li type="circle"> 
+    <li type="none"> 
       <!-- ban -->
       <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Moderation/ban.js">
         ban
       </a>
     </li>
     <dd>Banir membros através das mensagens que eles mandam</dd>
-    <li type="circle"> 
+    <li type="none"> 
       <!-- kick -->
       <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Moderation/kick.js">
         kick
@@ -106,14 +106,14 @@
     <dd>Chutar (kickar?) membros através das mensagens que eles mandam</dd><br>
 <!-- Util -->
     <dl><strong>Util</strong></dl>
-    <li type="circle"> 
+    <li type="none"> 
       <!-- config -->
       <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Util/config.js">
         config
       </a>
     </li>
     <dd>Comando futuro que será utilizado para fazer as configurações do bot no servidor incluindo: Configurar comandos habilitados e desabilitados, canais que o comando <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Fun/web.js">web</a> não pode ser utilizado e ativar o desativar o boas vindas e adeus</dd>
-    <li type="circle"> 
+    <li type="none"> 
       <!-- dbl -->
       <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Util/dbl.js">
         dbl
@@ -123,4 +123,4 @@
   </ul>
 <h2 align="center">:computer: Website</h2>
 <p align="center">O site ainda está sendo feito, logo logo disponível...<p>
-</p>
+</div>
