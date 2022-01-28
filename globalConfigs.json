@@ -1,0 +1,12 @@
+{
+  "colors": [
+    "#7B8C3E",
+    "#F28B66",
+    "#F24535",
+    "#401511",
+    "#BF463B"
+  ],
+  "disallowedCommandsDisable": [
+    "dbl"
+  ]
+}
