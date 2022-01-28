@@ -1,11 +1,10 @@
-
-  <h1 align="center">ednaldo-pereira-bot</h1>
+<h1 align="center">ednaldo-pereira-bot</h1>
 <div align="center">
   <!-- Header -->
   <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-%2398C611?style=for-the-badge" />
   
   <!-- Ednaldo Pereira Image -->
-  <img align="center" width="200px" height="200px" src="https://media.discordapp.net/attachments/785694303863046197/936636349849669673/Ednaldo_Discord__5.png">
+  <img align="center" width="200px" height="200px" src=".github/images/EdnaldoDiscord.png">
 
   <a href="https://discord.gg/VRJC4V9zmA/">
     <img src="https://shields.io/discord/776933942816538635?style=for-the-badge">
