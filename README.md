@@ -12,7 +12,7 @@
    <img alt="Status" src="https://img.shields.io/website?down_color=red&down_message=offline&label=status&style=for-the-badge&up_message=online&url=https%3A%2F%2FEdnaldo-Pereira-Bot.lckun.repl.co">
    <img alt="Javascript" src="https://img.shields.io/badge/Main%20lenguage-Javascript-%2f3ff17?style=for-the-badge&color=e7f041" /><br>
    <h2 align="center">Sobre</h2>
-   <p align="center">Ednaldo Pereira Bot feito especialmente para um <a href="https://discord.gg/VRJC4V9zmA/" title="https://discord.gg/VRJC4V9zmA">servidor do discord</a> mas que também está disponível para <a href="https://discord.com/oauth2/authorize?client_id=782964490047979530&permissions=1240105086070&scope=bot%20applications.commands" title="https://discord.com/oauth2/authorize?client_id=782964490047979530&permissions=1240105086070&scope=bot%20applications.commands/">adiciona-lo</a>!</p>
+   <p align="center">Ednaldo Pereira Bot feito especialmente para um <a href="https://discord.gg/VRJC4V9zmA/" title="https://discord.gg/VRJC4V9zmA">servidor do discord</a> mas que também está disponível para <a href="https://discord.com/oauth2/authorize?client_id=782964490047979530&permissions=1240105086070&scope=bot%20applications.commands" title="https://discord.com/oauth2/authorize?client_id=782964490047979530&permissions=1240105086070&scope=bot%20applications.commands">adiciona-lo</a>!</p>
    <p align="center">
       <a href="https://github.com/vitu1928">
       <img align="center" alt="Vitu" src="https://img.shields.io/badge/Developed%20by%3A-Vitu-%236D38F6?style=for-the-badge" />
