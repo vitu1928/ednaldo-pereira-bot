@@ -16,6 +16,9 @@
    <p align="center">
       <a href="https://github.com/vitu1928">
       <img align="center" alt="Vitu" src="https://img.shields.io/badge/Developed%20by%3A-Vitu-%236D38F6?style=for-the-badge" />
+      <a href="https://discord.com/users/589068449544929281">
+         <img align="center" src="https://badgen.net/badge/icon/discord?icon=discord&label&u&style=for-the-badge" width="100px">
+      
       </a>
    </p>
    <h2 align="center">:robot: Comandos</h2>
