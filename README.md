@@ -125,7 +125,17 @@
       <dd><a href="https://top.gg/servers/776933942816538635/vote">Ajude nosso servidor a crescer!</a></dd>
       <br>
    </ul>
-   <h2 align="center">:computer: Website</h2>
-   <p align="center">O site ainda está sendo feito, logo logo disponível...
+   <h2>Vote!</h2>
+   <a href="https://discordbots.org/bot/782964490047979530/vote">
+      <img src="https://discordbots.org/api/widget/782964490047979530.svg">
+   </a>
+   <a href="https://discordbotlist.com/bots/782964490047979530/upvote">
+      <img src="https://discordbotlist.com/bots/782964490047979530/widget">
+   </a>
+   <a href="https://discord.boats/bot/782964490047979530/vote">
+      <img src="https://discord.boats/api/widget/782964490047979530">
+   </a>
+   <h2>:computer: Website</h2>
+   <p>O site ainda está sendo feito, logo logo disponível...
    <p>
 </div>
