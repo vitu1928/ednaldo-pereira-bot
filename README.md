@@ -109,13 +109,7 @@
       <br>
       <!-- Util -->
       <dl><strong>Util</strong></dl>
-      <li type="none">
-         <!-- config -->
-         <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Util/config.js">
-         config
-         </a>
-      </li>
-      <dd>Comando futuro que será utilizado para fazer as configurações do bot no servidor incluindo: Configurar comandos habilitados e desabilitados, canais que o comando <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Fun/web.js">web</a> não pode ser utilizado e ativar o desativar o boas vindas e adeus</dd>
+      <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Fun/web.js">web</a> não pode ser utilizado e ativar o desativar o boas vindas e adeus</dd>
       <li type="none">
          <!-- dbl -->
          <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Util/dbl.js">
