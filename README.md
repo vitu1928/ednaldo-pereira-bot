@@ -107,7 +107,7 @@
       </li>
       <dd>Chutar (kickar?) membros através das mensagens que eles mandam</dd>
       <br>
-      <!-- Util -->
+<!-- Util -->
       <dl><strong>Util</strong></dl>
       <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Fun/web.js">web</a> não pode ser utilizado e ativar o desativar o boas vindas e adeus</dd>
       <li type="none">
@@ -117,6 +117,107 @@
          </a> 
       </li>
       <dd><a href="https://top.gg/servers/776933942816538635/vote">Ajude nosso servidor a crescer!</a></dd>
+      <br>
+<!-- Image -->
+      <dl><strong>Image</strong></dl>
+      <li type="none">
+         <!-- amogus -->
+         <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Image/amogus.js">
+         amogus
+         </a> 
+      </li>
+      <dd>SUSSY sus?!</dd>
+      <li type="none">
+         <!-- bandeira -->
+         <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Image/bandeira.js">
+         bandeira
+         </a> 
+      </li>
+      <dd>Coloque uma imagem na bandeira do mestre!/dd>
+      <li type="none">
+         <!-- beebop -->
+         <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Image/beebop.js">
+         beebop
+         </a> 
+      </li>
+      <dd>Escreva um texto no <a href="https://cdn.discordapp.com/attachments/807026989621313578/830289892219158528/beep.png">...</a>!/dd>
+     <li type="none">
+         <!-- drip -->
+         <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Image/drip.js">
+         drip
+         </a> 
+      </li>
+      <dd>Coloque drip em alguma imagem</dd>
+      <li type="none">
+         <!-- ednaldopc -->
+         <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Image/ednaldopc.js">
+         ednaldopc
+         </a> 
+      </li>
+      <dd>O que o mestre está a ver no pc?</dd>
+      <li type="none">
+         <!-- ednaldotv -->
+         <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Image/ednaldotv.js">
+         ednaldotv
+         </a> 
+      </li>
+      <dd>O que o mestre está a ver na tv?</dd>
+      <li type="none">
+         <!-- épic -->
+         <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Image/épic.js">
+         épic
+         </a> 
+      </li>
+      <dd>Apenas épico</dd>
+      <li type="none">
+         <!-- feijoada -->
+         <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Image/feijoada.js">
+         feijoada
+         </a> 
+      </li>
+      <dd>? ? ? ? ? ? ?</dd>
+      <li type="none">
+         <!-- moreira -->
+         <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Image/moreira.js">
+         moreira
+         </a> 
+      </li>
+      <dd>Coloca uma imagem na parede do ricardo e moreira</dd>
+      <li type="none">
+         <!-- petpet -->
+         <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Image/petpet.js">
+         petpet
+         </a> 
+      </li>
+      <dd>Faça carinho em alguém :dog:</dd>
+      <li type="none">
+         <!-- recaptcha -->
+         <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Image/recaptcha.js">
+         recaptcha
+         </a> 
+      </li>
+      <dd>Are you a robot?!</dd>
+      <li type="none">
+         <!-- tweet -->
+         <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Image/tweet.js">
+         tweet
+         </a> 
+      </li>
+      <dd>O que mestre acabas de tweetar?</dd>
+      <li type="none">
+         <!-- whatsapp -->
+         <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Image/whatsapp.js">
+         whatsapp
+         </a> 
+      </li>
+      <dd>Zap zaps :smirk:</dd>
+      <li type="none">
+         <!-- areyouwinningdad -->
+         <a href="https://github.com/vitu1928/ednaldo-pereira-bot/blob/main/Interactions/Image/winning.js">
+         areyouwinningdad
+         </a> 
+      </li>
+      <dd>Are you winning dad?</dd>
       <br>
    </ul>
    <h2>Vote!</h2>
