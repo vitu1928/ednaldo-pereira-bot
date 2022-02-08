@@ -25,16 +25,29 @@ module.exports = class extends Event {
 
     const interactionCommand = client.interactions.get(interaction.commandName)
     if (!interactionCommand) return;
+
     let args;
     if (interaction.options) args = interaction.options
-    await interactionCommand.execute({ 
-      interaction,
-      args,
-      client,
-      fanarts,
-      fotos,
-      configs,
-      globalConfigs
-    })
+    try {
+      await interactionCommand.execute({ 
+        interaction,
+        args,
+        client,
+        fanarts,
+        fotos,
+        configs,  
+        globalConfigs
+      })
+    } catch (e) {
+      console.error(e)
+      
+      let mes = {
+        content: `Ocorreu um erro!\n > ${e.message}`,
+        ephemeral: true
+      }
+
+      if (interaction.deferred) interaction.followUp(mes)
+      else interaction.reply(mes)
+    }
   }
 }

@@ -11,25 +11,47 @@ module.exports = class DbleInteraction extends Interaction {
       channelTypes: ["GUILD_TEXT", "DM"]
     })
   }
-
   async execute({ interaction, globalConfigs }) {
     return interaction.reply({
       embeds: [
-        new MessageEmbed()
-          .setTitle('<:cafetao:776957317802360853> Vote no nosso server!')
-          .setDescription('Esse [server](https://discord.gg/MBtcscjmEX "Link para entrar no servidor") foi feito em homenagem ao mestre, pode ter outros servers e comunidades mas ainda assim esse pode existir...então, se quiser nos ajudar..')
-          .setThumbnail('https://pbs.twimg.com/media/EfJz-cSWAAAHx-R.jpg:large')
-          .setColor(globalConfigs.colors[0])
+        new MessageEmbed({
+          title: "<:cafetao:776957317802360853> Vote no nosso server!",
+          description: 'Esse [server](https://discord.gg/MBtcscjmEX "Link para entrar no servidor") foi feito em homenagem ao mestre, pode ter outros servers e comunidades mas ainda assim esse pode existir...então, se quiser nos ajudar..',
+          thumbnail: {
+            url: 'https://pbs.twimg.com/media/EfJz-cSWAAAHx-R.jpg:large'
+          },
+          color: globalConfigs.colors[0],
+        })         
       ],
       components: [
-        new MessageActionRow({ components: [
-          new MessageButton({
-            label: "Top.gg",
-            style: "LINK",
-            url: "https://top.gg/servers/776933942816538635/vote",
-            emoji: "<:kk:801133388856950836>"
-          })
-        ]})
+        new MessageActionRow({ 
+          components: [
+            new MessageButton({
+              label: "Top.gg",
+              style: "LINK",
+              url: "https://top.gg/servers/776933942816538635/vote",
+              emoji: "<:kk:801133388856950836>"
+            }),
+            new MessageButton({
+              label: "Bot discordbotlist.com",
+              style: "LINK",
+              url: "https://discordbotlist.com/bots/ednaldo-pereira",
+              emoji: "<:Banido:808228534970613801>" 
+            }),
+            new MessageButton({
+              label: "Bot Top.gg",
+              style: "LINK",
+              url: "https://top.gg/bot/782964490047979530/vote",
+              emoji: "<:Banido:808228534970613801>"
+            }),
+            new MessageButton({
+              label: "Bot discord.boats",
+              style: "LINK",
+              url: "https://discord.boats/bot/782964490047979530",
+              emoji: "<:Banido:808228534970613801>"
+            }),
+          ]
+        })
       ]
     })
   }

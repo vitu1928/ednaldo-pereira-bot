@@ -8,5 +8,6 @@
   ],
   "disallowedCommandsDisable": [
     "dbl"
-  ]
+  ],
+  "ednaldoServerCommands": ["cargo"]
 }

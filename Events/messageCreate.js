@@ -9,7 +9,7 @@ module.exports = class extends Event {
   /**
    * @param {Message} message
    */       
-  async execute(message) {
+  async execute(message, client) {
     let first = message.mentions.users.first()
     if (first && first.id === '782964490047979530') 
       await message.reply({

@@ -32,7 +32,8 @@ module.exports = class WebHookInteraction extends Interaction {
           required: false
         }
       ],
-      channelTypes: ["GUILD_TEXT"]
+      channelTypes: ["GUILD_TEXT"],
+      beta: true
     })
   }
 

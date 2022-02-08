@@ -110,40 +110,44 @@ module.exports = class EdnaldoClient extends Client {
           interact = new interact()
           this.interactions.set(interact.name, interact)
           
-           if (interact.beta) {
-            const inter = await guilda.commands.create(interact)
-            inter.permissions.set({
-              permissions: [
-                {
-                  id: '731522255133081650',
-                  type: 'USER',
-                  permission: true
-                },
-                {
-                  id: '589068449544929281',
-                  type: 'USER',
-                  permission: true
-                },
-                {
-                  id: '416738506291806220',
-                  type: 'USER', 
-                  permission: true
-                },
-                {
-                  id: '810845854796873739',
-                  type: 'ROLE',
-                  permission: false
-                }
-              ]
-            })
-          } else if (!globalConfigs.disallowedCommandsDisable.includes(interact.name)) {
-            console.log(interact.name)
-            for await (let guild of this.guilds.cache.values()) {
-              await guild.commands.create(interact)
-                .catch(err => console.warn(`Não foi possível criar o comando '${interact.name}' na guilda '${guild.name}'`))
+          try {
+            if (interact.beta) {
+              const inter = await guilda.commands.create(interact)
+              inter.permissions.set({
+                permissions: [
+                  {
+                    id: '731522255133081650',
+                    type: 'USER',
+                    permission: true
+                  },
+                  {
+                    id: '589068449544929281',
+                    type: 'USER',
+                    permission: true
+                  },
+                  {
+                    id: '416738506291806220',
+                    type: 'USER', 
+                    permission: true
+                  },
+                  {
+                    id: '810845854796873739',
+                    type: 'ROLE',
+                    permission: false
+                  }
+                ]
+              })
+            } else if (!globalConfigs.ednaldoServerCommands.includes(interact.name)) {
+              // !globalConfigs.disallowedCommandsDisable.includes(interact.name)
+              await this.application.commands.create(interact)
+              console.log(interact.name)
+            } else {
+              await guilda.commands.create(interact)
+              console.log('Ednaldo Pereira Server:', interact.name)
             }
-          } else await this.application.commands.create(interact)
-          
+          } catch(e) {
+            console.error("Ocorreu algum erro ao criar o comando", interact.name)
+          }
         }
       }
       console.log("Interações carregadas")

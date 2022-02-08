@@ -1,39 +1,40 @@
-const { Interaction, CommandInteractionOptionResolver } = require('discord.js')
-const XMLHttpRequest = require('xmlhttprequest')
+const { Interaction, CommandInteractionOptionResolver, MessageMentions } = require('discord.js')
+const { XMLHttpRequest } = require('xmlhttprequest')
 
-module.exports = class Utils {
+module.exports = class Util {
   /**
    * @param { Interaction } interaction
    * @param { CommandInteractionOptionResolver } args
    * @returns { String } - Link
    */
-  static async getImage(interaction, args) {
-    try {
-      if (!interaction) throw new Error("Cadê a interação!?")
-      if (!args) throw new Error("Cadê os args!?")
-      
-      let membro = args.getUser('membro'), link = args.getString('link'), imgFetch;
+  static async getImage(interaction, args, client) {
+    if (!interaction) throw new Error("Cadê a interação!?")
+    if (!args) throw new Error("Cadê os args!?")
+    
+    const imagem = args.getString('imagem'),
+      userMention = MessageMentions.USERS_PATTERN.exec(imagem)?.at(1),
+      user = (userMention && client.users.cache.get(userMention)),
+      link = this.check(imagem),
+      isValidLink = link?.at(0).status !== 404;
 
-      if (!membro && !link) {
-        imgFetch = await interaction.channel.messages.fetch({ limit: 100 })
-        imgFetch = imgFetch.filter(x => x.attachments.size > 0).first().attachments.map(x => x.url)[0]
-      } else if (!membro) {
-        if (!this.imageExists(args.getString('link'))) throw new Error("Link inválido")
-      }
-      return (membro?.displayAvatarURL() ?? link) ?? imgFetch
-    } catch(e) {
-      return e
-    }
+    let res;
+
+    if (!imagem) {
+      var imgFetch = await interaction.channel.messages.fetch({ limit: 100 })
+      imgFetch = imgFetch.filter(x => x.attachments.size > 0).first().attachments.at(0).url
+    } 
+    else if (userMention) res = user.displayAvatarURL({
+      dynamic: false,
+      format: 'png'
+    })
+    else if (!isValidLink) throw new TypeError("O Link informado não é válido") 
+    else res = link.at(0).url
+
+    return res ?? imgFetch
   }
   
-  static imageExists(image_url){
-    let http = new XMLHttpRequest();
+  // https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)
 
-    http.open('GET', image_url, false);
-    http.send();
-
-    return http.status != 404;
-  }
     /**
     * @param { String|Array<String> }
     * @example check(['https://images-ext-1.discordapp.net/external/Q-zf3QZF2ZhkZnvpzmv8RtxKATl5tvpVJDAcdbqgphA/%3Fwidth%3D569%26height%3D427/https/media.discordapp.net/attachments/776934218206412830/776975140499226645/CIMG0016.JPG'],
@@ -53,17 +54,15 @@ module.exports = class Utils {
                 url: arrImageLinkOrLinkImage[i],
                 index: i
             });
-            else throw new Error()
+            else throw new Error("Error 404")
         } catch(e) {
             res.push({
                 status: 404,
                 url: arrImageLinkOrLinkImage[i],
                 index: i
             })
-        } finally {
-            res;
-        }
-    ++i
+        } finally {  ++i }
+       
     } while(i != arrImageLinkOrLinkImage.length)
     return res;
   }
