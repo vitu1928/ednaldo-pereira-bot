@@ -26,15 +26,14 @@ module.exports = class FeijoadaInteraction extends Interaction {
   async execute({ interaction, args, client }) {
     await interaction.deferReply()
     
-    const img = await loadImage(Util.getImage(interaction, args, client))
-    
+    const background = await loadImage(await Util.getImage(interaction, args, client))
     
     const canvas = createCanvas(867, 892)
     const ctx = canvas.getContext('2d')
-    const background = await loadImage(arrayDeEdnaldos[~~(Math.random() * arrayDeEdnaldos.length)])
-
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+    const ednaldo = await loadImage(arrayDeEdnaldos[~~(Math.random() * arrayDeEdnaldos.length)])
+    
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
+    ctx.drawImage(ednaldo, 0, 0, canvas.width, canvas.height)
 
     const attachment = new MessageAttachment(canvas.toBuffer(), `feijoada_${interaction.user.username}.jpg`)
     
