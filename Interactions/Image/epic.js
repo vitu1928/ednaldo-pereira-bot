@@ -40,7 +40,7 @@ module.exports = class EpicInteraction extends Interaction {
     registerFont(resolve("./Assets/Fonts/IHATCS__.TTF"), { family: "comic" }) //Font comic sans
     await interaction.deferReply()
   
-    let imagem = await Util.getImage(interaction, args, client)
+    const imagem = await loadImage(await Util.getImage(interaction, args, client))
 
     
     let título = args.getString('título')
@@ -49,7 +49,6 @@ module.exports = class EpicInteraction extends Interaction {
     const canvas = createCanvas(650, 505)
     const ctx = canvas.getContext('2d')
 
-    imagem = await loadImage(imagem)
     let fundo = await loadImage("https://media.discordapp.net/attachments/785694303863046197/843589600534069298/image.png?width=476&height=370")
 
     if (título .length > 32) return interaction.followUp('Título muito grande!')
