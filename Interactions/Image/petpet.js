@@ -1,5 +1,5 @@
 const petPetGif = require("pet-pet-gif")
-const { MessageAttachment } = require("discord.js")
+const { AttachmentBuilder } = require("discord.js")
 
 const Interaction = require("../../Structures/Interaction")
 const Util = require('../../Utils/util.js')
@@ -14,7 +14,13 @@ module.exports = class PetpetInteraction extends Interaction {
         {
           name: 'imagem',
           description: 'Menção de um usuário, link de uma imagem e caso não tenha nada vai buscar a última imagem do chat',
-          type: "STRING",
+          type: 3,
+          required: false
+        },
+        {
+          name: 'imagem_anexo',
+          description: 'Imagem petpet',
+          type: 11, // Attachment
           required: false
         }
       ],
@@ -35,7 +41,7 @@ module.exports = class PetpetInteraction extends Interaction {
     
     return await interaction.followUp({
       files: [
-        new MessageAttachment(animatedGif, `petpet_${interaction.user.username}.jpg`)
+        new AttachmentBuilder(animatedGif, { name: `petpet_${interaction.user.username}.gif` })
       ]
     })
   }

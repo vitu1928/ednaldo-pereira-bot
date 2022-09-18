@@ -1,4 +1,4 @@
-const { MessageAttachment } = require("discord.js")
+const { AttachmentBuilder } = require("discord.js")
 const { createCanvas, loadImage } = require("canvas") 
 
 const Util = require("../../Utils/util.js") 
@@ -15,7 +15,13 @@ module.exports = class FeijoadaInteraction extends Interaction {
         {
           name: 'imagem',
           description: 'Menção de um usuário, link de uma imagem e caso não tenha nada vai buscar a última imagem do chat',
-          type: "STRING",
+          type: 3,
+          required: false
+        },
+        {
+          name: 'imagem_anexo',
+          description: 'Imagem f e i j o a d a',
+          type: 11, // Attachment
           required: false
         }
       ],
@@ -26,17 +32,16 @@ module.exports = class FeijoadaInteraction extends Interaction {
   async execute({ interaction, args, client }) {
     await interaction.deferReply()
     
-    const img = await loadImage(Util.getImage(interaction, args, client))
-    
+    const background = await loadImage(await Util.getImage(interaction, args, client))
     
     const canvas = createCanvas(867, 892)
     const ctx = canvas.getContext('2d')
-    const background = await loadImage(arrayDeEdnaldos[~~(Math.random() * arrayDeEdnaldos.length)])
-
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+    const ednaldo = await loadImage(arrayDeEdnaldos[~~(Math.random() * arrayDeEdnaldos.length)])
+    
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
+    ctx.drawImage(ednaldo, 0, 0, canvas.width, canvas.height)
 
-    const attachment = new MessageAttachment(canvas.toBuffer(), `feijoada_${interaction.user.username}.jpg`)
+    const attachment = new AttachmentBuilder(canvas.toBuffer(), {name: `feijoada_${interaction.user.username}.jpg`})
     
     return await interaction.followUp({
       files: [attachment]

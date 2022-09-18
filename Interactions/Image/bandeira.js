@@ -1,6 +1,6 @@
 const Interaction = require("../../Structures/Interaction")
-const { MessageAttachment } = require("discord.js")
 const Util = require("../../Utils/util.js") 
+const { AttachmentBuilder } = require("discord.js")
 const { createCanvas, loadImage } = require("canvas")
 
 module.exports = class BandeiraInteraction extends Interaction { 
@@ -9,11 +9,17 @@ module.exports = class BandeiraInteraction extends Interaction {
       type: 1,
       description: 'Coloque a imagem de algo na bandeira do mestre',
       defaultPermission: true,
-      options:[
+      options: [
         {
           name: 'imagem',
           description: 'Menção de um usuário, link de uma imagem e caso não tenha nada vai buscar a última imagem do chat',
-          type: "STRING",
+          type: 3,
+          required: false
+        },
+        {
+          name: 'imagem_anexo',
+          description: 'Imagem bandeirística',
+          type: 11, // Attachment
           required: false
         }
       ],
@@ -25,8 +31,6 @@ module.exports = class BandeiraInteraction extends Interaction {
     await interaction.deferReply()
     
     const avatar = await loadImage(await Util.getImage(interaction, args, client))
-
-    
     const canvas = createCanvas(800, 800)
     const ctx = canvas.getContext("2d")
       
@@ -44,13 +48,11 @@ module.exports = class BandeiraInteraction extends Interaction {
 
     const background = await loadImage("https://media.discordapp.net/attachments/811202606038122517/831141122368995368/EQIPgg3WoAAKG2Z.png?width=422&height=427")
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
-    
-    const attachment = new MessageAttachment(
-      canvas.toBuffer(),
-      `${interaction.user.username}_bandeira.jpg`
-    );
+
     return await interaction.followUp({
-      files: [ attachment ]
+      files: [ 
+        new AttachmentBuilder(canvas.toBuffer(), { name: `${interaction.user.username}_bandeira.jpg`})
+      ]
     })
   }
 }

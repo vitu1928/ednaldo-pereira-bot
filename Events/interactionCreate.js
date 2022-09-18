@@ -42,7 +42,7 @@ module.exports = class extends Event {
       console.error(e)
       
       let mes = {
-        content: `Ocorreu um erro!\n > ${e.message}`,
+        content: `Ocorreu um erro! <:Bravo:808443772689317979>`,
         ephemeral: true
       }
 

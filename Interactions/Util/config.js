@@ -1,5 +1,5 @@
 const Interaction = require("../../Structures/Interaction.js")
-const { MessageSelectMenu, MessageActionRow, Collection } = require('discord.js')
+const { SelectMenuComponent, ActionRow, Collection } = require('discord.js')
 const { EventEmitter } = require('events');
 
 const myEmitter = new EventEmitter();
@@ -15,7 +15,7 @@ module.exports = class ConfigInteraction extends Interaction {
         {
           name: 'comando',
           description: 'Habilitar ou desabilitar algum comando',
-          type: "STRING",
+          type: 3,
           required: false,
           choices: [
             {
@@ -76,7 +76,7 @@ module.exports = class ConfigInteraction extends Interaction {
           options = [{label:"any",value:"any"}], 
           placeholder=`Todas as interações já estão ${enabled ? 'desabilitadas' : 'habilitadas'}`;
 
-        return new MessageSelectMenu({
+        return new SelectMenuComponent({
           customId: 'MenuConfig',
           placeholder,
           options,
@@ -116,7 +116,7 @@ module.exports = class ConfigInteraction extends Interaction {
             return await message.edit({
               content: `${enabled ? "Desabilitado" : "Habilitado"}(s): ${list}`,
               components: [ 
-                new MessageActionRow({ components: [ await MenuConfig(!enabled) ] }) 
+                new ActionRow({ components: [ await MenuConfig(!enabled) ] }) 
               ] 
             })
           }
@@ -135,7 +135,7 @@ module.exports = class ConfigInteraction extends Interaction {
         
           await message.edit({
             components: [
-              new MessageActionRow({
+              new ActionRow({
                 components: [
                   message.resolveComponent('MenuConfig')
                     .setDisabled(true)
@@ -153,7 +153,7 @@ module.exports = class ConfigInteraction extends Interaction {
           message: {
             content: "Escolha as interações que você quer habilitar para esse servidor",
             components: [
-              new MessageActionRow({ components: [ await MenuConfig(0) ] })
+              new ActionRow({ components: [ await MenuConfig(0) ] })
             ]
           },
           enabled: 0
@@ -165,7 +165,7 @@ module.exports = class ConfigInteraction extends Interaction {
           message: {
             content: "Escolha as interações que você quer desabilitar para esse servidor",
             components: [
-              new MessageActionRow({ components: [ await MenuConfig(1) ] })
+              new ActionRow({ components: [ await MenuConfig(1) ] })
             ]
           },
           enabled: 1

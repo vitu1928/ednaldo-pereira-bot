@@ -1,5 +1,5 @@
 const Interaction = require('../../Structures/Interaction.js')
-const { MessageEmbed } = require('discord.js')
+const { Embed } = require('discord.js')
 
 module.exports = class FotoInteraction extends Interaction {
   constructor() {
@@ -36,11 +36,12 @@ module.exports = class FotoInteraction extends Interaction {
 
       await interaction.reply({
         embeds: [
-          new MessageEmbed()
-            .setTitle('Mestre Ednaldo Pereira e seu grandioso rosto')   
-            .setURL(list[row.valor])
-            .setImage(list[row.valor]) 
-            .setColor('#EA7200')
+          new Embed({
+            title: "Mestre Ednaldo Pereira e seu grandioso rosto",
+            url: list[row.valor],
+            image: { url: list[row.valor] },
+            hexColor: "#EA7200"
+          })
         ]
       })
       await db.run(`DELETE FROM \`${id}\` WHERE id=${row.id}`)

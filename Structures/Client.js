@@ -7,10 +7,13 @@ module.exports = class EdnaldoClient extends Client {
     super({
       partials: ['MESSAGE', 'CHANNEL', 'GUILD_MEMBER'],
       intents: [
-        "GUILDS",
-        "GUILD_MESSAGES",
-        "GUILD_MEMBERS",
-        "GUILD_INTEGRATIONS"
+        1, // GUILD
+        512 , // GUILD MESSAGES
+        2, // GUILD ... 
+        16, // GUILD INTEGRATIONS
+        32768, // MESSAGE CONTENT
+        32, // GUILD WEBHOOKS
+        4, // GUILD BANS
       ],
       allowedMentions: { parse: ['roles', 'users'] },
       presence: {
@@ -87,11 +90,11 @@ module.exports = class EdnaldoClient extends Client {
 
       if (e.once) {
         this.once(eventName, function (...args) {
-          e.execute(...args, this)
+          try { e.execute(...args, this) } catch(e) { console.error(e) }
         })
       } else {
         this.on(eventName, function (...args) {
-          e.execute(...args, this)
+          try { e.execute(...args, this) } catch(e) { console.error(e) }
         })
       }
     })
@@ -112,7 +115,8 @@ module.exports = class EdnaldoClient extends Client {
           
           try {
             if (interact.beta) {
-              const inter = await guilda.commands.create(interact)
+              /*
+const inter = await guilda.commands.create(interact)
               inter.permissions.set({
                 permissions: [
                   {
@@ -137,6 +141,7 @@ module.exports = class EdnaldoClient extends Client {
                   }
                 ]
               })
+*/
             } else if (!globalConfigs.ednaldoServerCommands.includes(interact.name)) {
               // !globalConfigs.disallowedCommandsDisable.includes(interact.name)
               await this.application.commands.create(interact)
@@ -147,6 +152,7 @@ module.exports = class EdnaldoClient extends Client {
             }
           } catch(e) {
             console.error("Ocorreu algum erro ao criar o comando", interact.name)
+            console.error(e)
           }
         }
       }

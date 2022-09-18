@@ -1,11 +1,12 @@
 const Interaction = require('../../Structures/Interaction.js')
-const { MessageActionRow, MessageButton, Permissions } = require("discord.js")
+const { ActionRow, ButtonComponent, Permissions } = require("discord.js")
 
 module.exports = class KickInteraction extends Interaction {
   constructor() {
     super("Kick author", {
       type: 3,
-      defaultPermission: true
+      defaultPermission: true,
+      channelTypes: ["GUILD_TEXT"]
     })
   }
 
@@ -24,19 +25,25 @@ module.exports = class KickInteraction extends Interaction {
       return interaction.reply({ content: 'Meu cargo é inferior ao membro que você quer chutar!', ephemeral: true })
     }
 
-    let row = new MessageActionRow().addComponents(
-      new MessageButton()
-        .setCustomId('sim')
-        .setLabel("Sim")
-        .setStyle('SUCCESS')
-        .setEmoji("✅"),
-
-      new MessageButton()
-        .setCustomId('não')
-        .setLabel("Não")
-        .setStyle('DANGER')
-        .setEmoji("❌"),
-    )
+    let row = new ActionRow({
+      components: 
+        [
+          new ButtonComponent({
+            customId: "sim",
+            label: "Sim",
+            styles: "SUCCES",
+            emoji: "✅"
+          }),
+          
+          new ButtonComponent({
+            customId: "não",
+            label: "Não",
+            styles: "DANGER",
+            emoji: "❌"
+          })
+        ]
+    })
+    
     let i = await interaction.reply({ ephemeral: true, content: `Quer mesmo chutar **${aSerKickado.user.username}** (${aSerKickado.user.id})?`, components: [row] })
 
     const filter = (interactionE) => (interactionE.customId === 'sim' || interactionE.customId === 'não') && interactionE.user.id === interaction.user.id

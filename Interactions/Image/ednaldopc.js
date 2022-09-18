@@ -1,5 +1,5 @@
 const { loadImage, createCanvas } = require("canvas")
-const { MessageAttachment } = require("discord.js")
+const { AttachmentBuilder } = require("discord.js")
 
 const Interaction = require("../../Structures/Interaction")
 const Util = require("../../Utils/util.js")
@@ -14,7 +14,13 @@ module.exports = class EdnaldopcInteraction extends Interaction {
         {
           name: 'imagem',
           description: 'Menção de um usuário, link de uma imagem e caso não tenha nada vai buscar a última imagem do chat',
-          type: "STRING",
+          type: 3,
+          required: false
+        },
+        {
+          name: 'imagem_anexo',
+          description: 'Imagem o que Ednaldo está vendo?',
+          type: 11, // Attachment
           required: false
         }
       ],
@@ -48,9 +54,9 @@ module.exports = class EdnaldopcInteraction extends Interaction {
 
     return await interaction.followUp({
       files: [
-        new MessageAttachment(
+        new AttachmentBuilder(
           canvas.toBuffer(),
-          `${interaction.user.username}_ednaldopc.jpg`
+          { name: `${interaction.user.username}_ednaldopc.jpg`}
         )
       ]
     })

@@ -1,5 +1,5 @@
 const Interaction = require('../../Structures/Interaction.js')
-const { MessageEmbed } = require('discord.js')
+const { Embed } = require('discord.js')
 
 module.exports = class FanartInteraction extends Interaction {
   constructor() {
@@ -35,11 +35,12 @@ module.exports = class FanartInteraction extends Interaction {
 
       await interaction.reply({
         embeds: [
-          new MessageEmbed()
-            .setTitle('Fanart')   
-            .setURL(list[row.valor])
-            .setImage(list[row.valor]) 
-            .setColor('#EA7200')
+          new Embed({
+            title: "Fanart",
+            url: list[row.valor],
+            image: { url: list[row.valor] },
+            hexColor: "#EA7200"
+          })
         ]
       })
       await db.run(`DELETE FROM \`${id}\` WHERE id=${row.id}`)

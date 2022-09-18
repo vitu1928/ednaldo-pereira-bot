@@ -1,5 +1,5 @@
 const { createCanvas, loadImage, registerFont } = require("canvas")
-const { MessageAttachment } = require("discord.js")
+const { AttachmentBuilder } = require("discord.js")
 
 const Interaction = require("../../Structures/Interaction")
 const Util = require("../../Utils/util.js")
@@ -16,19 +16,25 @@ module.exports = class EpicInteraction extends Interaction {
         {
           name: 'título',
           description: 'Texto para colocar na montagem, máximo de 32 caracteres',
-          type: "STRING",
+          type: 3,
           required: true
         },
         {
           name: 'text',
           description: 'Texto para colocar na montagem',
-          type: "STRING",
+          type: 3,
           required: false
         },
         {
           name: 'imagem',
           description: 'Menção de um usuário, link de uma imagem e caso não tenha nada vai buscar a última imagem do chat',
-          type: "STRING",
+          type: 3,
+          required: false
+        },
+        {
+          name: 'imagem_anexo',
+          description: 'Imagem Épica',
+          type: 11, // Attachment
           required: false
         }
       ],
@@ -40,8 +46,7 @@ module.exports = class EpicInteraction extends Interaction {
     registerFont(resolve("./Assets/Fonts/IHATCS__.TTF"), { family: "comic" }) //Font comic sans
     await interaction.deferReply()
   
-    let imagem = await Util.getImage(interaction, args, client)
-
+    const imagem = await loadImage(await Util.getImage(interaction, args, client))
     
     let título = args.getString('título')
     let texto = args.getString('text')
@@ -49,7 +54,6 @@ module.exports = class EpicInteraction extends Interaction {
     const canvas = createCanvas(650, 505)
     const ctx = canvas.getContext('2d')
 
-    imagem = await loadImage(imagem)
     let fundo = await loadImage("https://media.discordapp.net/attachments/785694303863046197/843589600534069298/image.png?width=476&height=370")
 
     if (título .length > 32) return interaction.followUp('Título muito grande!')
@@ -83,7 +87,7 @@ module.exports = class EpicInteraction extends Interaction {
 
     return interaction.followUp({
       files: [
-        new MessageAttachment(canvas.toBuffer(), 'epic.png')
+        new AttachmentBuilder(canvas.toBuffer(), { name: 'epic.png' })
       ]
     })
   }

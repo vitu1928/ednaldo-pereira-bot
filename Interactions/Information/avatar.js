@@ -1,5 +1,5 @@
 const Interaction = require('../../Structures/Interaction.js')
-const { MessageEmbed } = require('discord.js')
+const { Embed } = require('discord.js')
 
 module.exports = class AvatarInteraction extends Interaction {
   constructor() {
@@ -11,13 +11,13 @@ module.exports = class AvatarInteraction extends Interaction {
         {
           name: 'membro',
           description: 'Membro para pegar o avatar',
-          type: "USER",
+          type: 6,
           required: false,
         },
         {
           name: 'tamanho',
           description: 'Tamanho da imagem, padrão 512',
-          type: "STRING",
+          type: 3,
           required: false,
           choices: [
             {
@@ -63,28 +63,34 @@ module.exports = class AvatarInteraction extends Interaction {
     })
   }
 
-  async execute({ interaction, args, client }) {
-    interaction.deferReply()
+  async execute({ interaction, args }) {
+    
+    await interaction.deferReply()
+
     const user = args.getUser('membro') ?? interaction.user
     
     const avatar = (format) => user.displayAvatarURL({
-      format: format,
+      extension: format,
       dynamic: true,
       size: parseInt(args.getString('tamanho')) ?? 512
     })
 
     await interaction.followUp({
       embeds: [
-        new MessageEmbed()
-        .setTitle(user.username)
-        .setDescription(`
+        new Embed({
+          title: user.username,
+          description: `
         > [webp](${avatar('webp')})
         > [png](${avatar('png')})
         > [jpg](${avatar('jpg')})
         > [jpeg](${avatar('jpeg')})
-        `)
-        .setImage(avatar('png'))
-        .setColor('#2F3136')
+        `,
+          image: {
+            url: avatar('png')
+          },
+
+          hexColor: '#2F3136'
+        })
       ]
     })
   }

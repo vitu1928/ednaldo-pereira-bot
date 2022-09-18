@@ -1,5 +1,5 @@
 const { loadImage, createCanvas } = require("canvas")
-const { MessageAttachment } = require("discord.js")
+const { AttachmentBuilder } = require("discord.js")
 
 const Interaction = require("../../Structures/Interaction")
 const Util = require("../../Utils/util.js")
@@ -14,9 +14,15 @@ module.exports = class DripInteraction extends Interaction {
         {
           name: 'imagem',
           description: 'Menção de um usuário, link de uma imagem e caso não tenha nada vai buscar a última imagem do chat',
-          type: "STRING",
+          type: 3,
           required: false
-        }
+        },
+        {
+          name: 'imagem_anexo',
+          description: 'Imagem drip',
+          type: 11, // Attachment
+          required: false
+        },
       ],
       channelTypes: ["GUILD_TEXT", "DM"]
     })
@@ -40,7 +46,7 @@ module.exports = class DripInteraction extends Interaction {
 
     return await interaction.followUp({
       files: [
-        new MessageAttachment(canvas.toBuffer(), `Drip${interaction.user.username}.jpg`)
+        new AttachmentBuilder(canvas.toBuffer(), { name: `Drip${interaction.user.username}.jpg` })
       ]
     })
   }

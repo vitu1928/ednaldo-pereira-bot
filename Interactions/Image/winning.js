@@ -1,4 +1,4 @@
-const { MessageAttachment } = require("discord.js")
+const { AttachmentBuilder } = require("discord.js")
 const { createCanvas, loadImage } = require("canvas") 
 
 const Util = require("../../Utils/util.js") 
@@ -8,13 +8,19 @@ module.exports = class AreyouwinningdadInteraction extends Interaction {
   constructor() { 
     super("areyouwinningdad", {
       type: 1,
-      description: 'Are you winning dad?y',
+      description: 'Are you winning daddy?',
       defaultPermission: true,
       options: [
         {
           name: 'imagem',
           description: 'Menção de um usuário, link de uma imagem e caso não tenha nada vai buscar a última imagem do chat',
-          type: "STRING",
+          type: 3,
+          required: false
+        },
+        {
+          name: 'imagem_anexo',
+          description: 'Imagem winning?',
+          type: 11, // Attachment
           required: false
         }
       ],
@@ -37,7 +43,7 @@ module.exports = class AreyouwinningdadInteraction extends Interaction {
 
     return await interaction.followUp({
       files: [
-        new MessageAttachment(canvas.toBuffer(),`${interaction.user.username}_amogus.jpg`)
+        new AttachmentBuilder(canvas.toBuffer(), { name: `${interaction.user.username}_amogus.jpg` })
       ]
     })
   }

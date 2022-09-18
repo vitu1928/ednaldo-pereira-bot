@@ -10,7 +10,7 @@ module.exports = class GetCargoInteraction extends Interaction {
         {
           name: 'você_é',
           description: 'O que você é do mestre?',
-          type: "STRING",
+          type: 3,
           required: true,
           choices: [
             {

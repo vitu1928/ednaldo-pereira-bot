@@ -1,5 +1,5 @@
 const Interaction = require("../../Structures/Interaction")
-const { MessageAttachment } = require("discord.js")
+const { AttachmentBuilder } = require("discord.js")
 
 const Util = require('../../Utils/util.js')
 
@@ -13,7 +13,13 @@ module.exports = class MoreiraInteraction extends Interaction {
         {
           name: 'imagem',
           description: 'Menção de um usuário, link de uma imagem e caso não tenha nada vai buscar a última imagem do chat',
-          type: "STRING",
+          type: 3,
+          required: false
+        },
+        {
+          name: 'imagem_anexo',
+          description: 'Imagem ricardo e moreira',
+          type: 11, // Attachment
           required: false
         }
       ],
@@ -29,7 +35,7 @@ module.exports = class MoreiraInteraction extends Interaction {
     img = `https://api.popcatdev.repl.co/uncover?image=${encodeURIComponent(img)}`
     return await interaction.followUp({
       files: [
-        new MessageAttachment(img, `moreiraedit.jpg`)
+        new AttachmentBuilder(img, { name: `moreiraedit.jpg`})
       ]
     })
   }

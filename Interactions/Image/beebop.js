@@ -1,5 +1,5 @@
 const Interaction = require("../../Structures/Interaction")
-const { MessageAttachment } = require("discord.js")
+const { AttachmentBuilder } = require("discord.js")
 const { createCanvas, loadImage, registerFont } = require("canvas")
 
 const { resolve } = require('path')
@@ -14,8 +14,14 @@ module.exports = class BeebopInteraction extends Interaction {
         {
           name: 'text',
           description: 'Texto para colocar na montagem, máximo de 92 caracteres',
-          type: "STRING",
+          type: 3, // String
           required: true
+        },
+        {
+          name: 'imagem_anexo',
+          description: 'Imagem beebop',
+          type: 11, // Attachment
+          required: false
         }
       ],
       channelTypes: ["GUILD_TEXT", "DM"]
@@ -32,19 +38,18 @@ module.exports = class BeebopInteraction extends Interaction {
 
     registerFont(resolve("./Assets/Fonts/PixelGrunge.ttf"), { family: "pixelGrunge" }) //Font pixel grunge
 
-    const url = 'https://cdn.discordapp.com/attachments/807026989621313578/830289892219158528/beep.png'
-
-    const canvas = createCanvas(1366, 768)
-    const ctx = canvas.getContext('2d')
-    const bg = await loadImage(url)
+    const url = 'https://cdn.discordapp.com/attachments/807026989621313578/830289892219158528/beep.png',
+      canvas = createCanvas(1366, 768),
+      ctx = canvas.getContext('2d'),
+      bg = await loadImage(url);
     ctx.drawImage(bg, 0, 0)
     
-    let textos = args.getString("text").split('')
-    let texto_total = []
-    let longitud_maxima = 25;
-    for (let i = 0; i <= textos.length; i++) {
+    let textos = args.getString("text").split(''),
+      texto_total = [],
+      longitud_maxima = 25;
+    for (let i of textos) {
       texto_total.push(textos[i])
-      if (i === longitud_maxima) {
+      if (texto_total.lenght+1 === longitud_maxima) {
         texto_total.push('\n')
         longitud_maxima = longitud_maxima + 30
       }
@@ -56,7 +61,7 @@ module.exports = class BeebopInteraction extends Interaction {
 
     return await interaction.followUp({
       files: [
-        new MessageAttachment(canvas.toBuffer(), 'beepbop.png')
+        new AttachmentBuilder(canvas.toBuffer(), { name: 'beepbop.png' })
       ]
     })
   }

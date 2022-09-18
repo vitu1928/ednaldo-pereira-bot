@@ -9,23 +9,21 @@ module.exports = class Util {
    */
   static async getImage(interaction, args, client) {
     if (!interaction) throw new Error("Cadê a interação!?")
-    if (!args) throw new Error("Cadê os args!?")
+    else if (!args) throw new Error("Cadê os args!?")
     
-    const imagem = args.getString('imagem'),
-      userMention = MessageMentions.USERS_PATTERN.exec(imagem)?.at(1),
+    let imagem = (args.getAttachment("imagem_anexo")?.url) ?? args.getString('imagem'),
+      userMention = MessageMentions.UsersPattern.exec(imagem)?.at(1),
       user = (userMention && client.users.cache.get(userMention)),
       link = this.check(imagem),
-      isValidLink = link?.at(0).status !== 404;
-
-    let res;
+      isValidLink = link?.at(0).status !== 404,
+      res;
 
     if (!imagem) {
       var imgFetch = await interaction.channel.messages.fetch({ limit: 100 })
-      imgFetch = imgFetch.filter(x => x.attachments.size > 0).first().attachments.at(0).url
-    } 
-    else if (userMention) res = user.displayAvatarURL({
+      imgFetch = imgFetch.find(x => x.attachments.size > 0).attachments.at(0).url
+    } else if (userMention) res = user.displayAvatarURL({
       dynamic: false,
-      format: 'png'
+      extension: 'jpg'
     })
     else if (!isValidLink) throw new TypeError("O Link informado não é válido") 
     else res = link.at(0).url
@@ -54,7 +52,7 @@ module.exports = class Util {
                 url: arrImageLinkOrLinkImage[i],
                 index: i
             });
-            else throw new Error("Error 404")
+            else throw new Error("Erro 404")
         } catch(e) {
             res.push({
                 status: 404,

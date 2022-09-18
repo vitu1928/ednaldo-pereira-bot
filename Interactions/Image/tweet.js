@@ -1,5 +1,5 @@
 const { get } = require('axios')
-const { MessageAttachment } = require("discord.js")
+const { AttachmentBuilder } = require("discord.js")
 const { createCanvas, loadImage } = require('canvas')
 
 const Interaction = require("../../Structures/Interaction")
@@ -10,11 +10,11 @@ module.exports = class TweetInteraction extends Interaction {
       type: 1,
       description: "Tweet algo em nome do mestre",
       defaultPermission: true,
-      options:[
+      options: [
         {
           name: 'text',
           description: 'Texto para colocar na montagem',
-          type: "STRING",
+          type: 3,
           required: true
         }
       ],
@@ -46,7 +46,7 @@ module.exports = class TweetInteraction extends Interaction {
       ctx.drawImage(ednaldoCircleImg, 55, 50, 87, 87);
 
       return interaction.followUp({
-        files: [ new MessageAttachment(canvas.toBuffer(), "tweet.png") ]
+        files: [ new AttachmentBuilder(canvas.toBuffer(), { name: "tweet.png" }) ]
       })
   }
 }

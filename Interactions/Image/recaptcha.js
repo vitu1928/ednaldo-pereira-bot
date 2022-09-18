@@ -1,4 +1,4 @@
-const { MessageAttachment } = require("discord.js")
+const { AttachmentBuilder } = require("discord.js")
 const { get } = require('axios')
 
 const Interaction = require("../../Structures/Interaction")
@@ -14,7 +14,13 @@ module.exports = class RecaptchaInteraction extends Interaction {
         {
           name: 'imagem',
           description: 'Menção de um usuário, link de uma imagem e caso não tenha nada vai buscar a última imagem do chat',
-          type: "STRING",
+          type: 3,
+          required: false
+        },
+        {
+          name: 'imagem_anexo',
+          description: 'Imagem ao recaptcha',
+          type: 11, // Attachment
           required: false
         }
       ],
@@ -36,7 +42,7 @@ module.exports = class RecaptchaInteraction extends Interaction {
     ).data
 
     return interaction.followUp({
-      files: [ new MessageAttachment(message, "captcha.png") ]
+      files: [ new AttachmentBuilder(message, { name: "captcha.png" }) ]
     })
   }
 }

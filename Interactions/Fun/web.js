@@ -10,25 +10,25 @@ module.exports = class WebHookInteraction extends Interaction {
         {
           name: 'mensagem',
           description: 'Mensagem que vai ser falada',
-          type: "STRING",
+          type: 3,
           required: true
         },
         {
           name: 'usuário',
           description: 'Usuário que vai "falar"',
-          type: "USER",
+          type: 6,
           required: true
-        },
-        {
-          name: 'canal',
-          description: 'Canal que vai ser enviado a mensagem',
-          type: "CHANNEL",
-          required: false
         },
         {
           name: 'arquivos',
           description: 'Links dos arquivos para serem enviados junto com a mensagem, separe-os por um espaço',
-          type: "STRING",
+          type: 3,
+          required: false
+        },
+        {
+          name: 'canal',
+          description: 'Canal que vai ser enviado a mensagem',
+          type: 7,
           required: false
         }
       ],
@@ -39,9 +39,7 @@ module.exports = class WebHookInteraction extends Interaction {
 
   async execute({ interaction, args, client }) {
     let canal = args.getChannel('canal') ?? interaction.channel
-    let files = args.getString('arquivos')?.split(" ")
-
-    files = files?.filter(fileLink => /(https?)?:\/\/((www)\.)?([-a-zA-Z0-9@:%._\+~#=]{1,256})\.([a-zA-Z0-9()]{1,6})\b([-a-zA-Z0-9()@:%_\+.~#?&\/=]*)/.test(fileLink))
+    const files = args.getString('arquivos')?.split(" ")?.filter(fileLink => /(https?)?:\/\/((www)\.)?([-a-zA-Z0-9@:%._\+~#=]{1,256})\.([a-zA-Z0-9()]{1,6})\b([-a-zA-Z0-9()@:%_\+.~#?&\/=]*)/.test(fileLink))
 
     let sus = args.getUser('usuário')
     let user = sus.displayAvatarURL()
