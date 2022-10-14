@@ -120,32 +120,6 @@ module.exports = class EdnaldoClient extends Client {
               console.log(interact.name)
             } else {
               await guilda.commands.create(interact)
-              /*
- q            inter.permissions.set({
-                permissions: [
-                  {
-                    id: '731522255133081650',
-                    type: 'USER',
-                    permission: true
-                  },
-                  {
-                    id: '589068449544929281',
-                    type: 'USER',
-                    permission: true
-                  },
-                  {
-                    id: '416738506291806220',
-                    type: 'USER', 
-                    permission: true
-                  },
-                  {
-                    id: '810845854796873739',
-                    type: 'ROLE',
-                    permission: false
-                  }
-                ]
-              })
-*/
               console.log('Ednaldo Pereira Server:', interact.name)
             }
           } catch(e) {
