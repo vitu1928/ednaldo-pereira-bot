@@ -1,5 +1,5 @@
 const Interaction = require('../../Structures/Interaction.js')
-const { ActionRow, ButtonComponent, Permissions } = require("discord.js")
+const { ActionRowBuilder, ButtonBuilder, Permissions } = require("discord.js")
 
 module.exports = class BanInteraction extends Interaction {
   constructor() {
@@ -25,17 +25,17 @@ module.exports = class BanInteraction extends Interaction {
       return interaction.reply({ content: 'Meu cargo é inferior ao membro que você quer banir!', ephemeral: true })
     }
 
-    let row = new ActionRow({
+    let row = new ActionRowBuilder({
       components: 
         [
-          new ButtonComponent({
+          new ButtonBuilder({
             customId: "ban-sim",
             label: "Sim",
             styles: "SUCCES",
             emoji: "✅"
           }),
           
-          new ButtonComponent({
+          new ButtonBuilder({
             customId: "ban-não",
             label: "Não",
             styles: "DANGER",

@@ -1,6 +1,6 @@
 const Interaction = require('../../Structures/Interaction.js'),
 { inspect } = require('util'),
-{ MessageEmbed, MessageAttachment } = require('discord.js');
+{ EmbedBuilder, AttachmentBuilder } = require('discord.js');
 
 module.exports = class EvalInteraction extends Interaction {
   constructor() {
@@ -17,7 +17,7 @@ module.exports = class EvalInteraction extends Interaction {
         },
         {
           name: 'discord',
-          description: 'Declarar as variaveis do discord (MessageEmbed, MessageAttachment ...)',
+          description: 'Declarar as variaveis do discord (EmbedBuilder, AttachmentBuilder ...)',
           type: "BOOLEAN",
           required: false
         },
@@ -34,9 +34,9 @@ module.exports = class EvalInteraction extends Interaction {
   }
 
   async execute({ interaction, args, client, fanarts, configs, fotos }) {
-    const embedEval = new MessageEmbed({
+    const embedEval = new EmbedBuilder({
       title: "Eval",
-      color: "#2F3136"
+      color: 3092790
     })
     
     let files = [], retorno;
@@ -54,7 +54,7 @@ module.exports = class EvalInteraction extends Interaction {
     } finally {
       if (args.getBoolean('mobile')) embedEval.addField("Retorno", `\`\`\`js\n${retorno.slice(0, 999)}\`\`\``)
       if (retorno.length < 999) embedEval.addField("Retorno", `\`\`\`js\n${retorno}\`\`\``);
-      else files = [new MessageAttachment(Buffer.from(retorno), `${interaction.user.username}.js`)]
+      else files = [new AttachmentBuilder(Buffer.from(retorno), `${interaction.user.username}.js`)]
 
       await interaction.reply({
         files,

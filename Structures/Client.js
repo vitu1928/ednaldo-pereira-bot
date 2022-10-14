@@ -114,10 +114,14 @@ module.exports = class EdnaldoClient extends Client {
           this.interactions.set(interact.name, interact)
           
           try {
-            if (interact.beta) {
+            if (!globalConfigs.ednaldoServerCommands.includes(interact.name)) {
+              // !globalConfigs.disallowedCommandsDisable.includes(interact.name)
+              await this.application.commands.create(interact)
+              console.log(interact.name)
+            } else {
+              await guilda.commands.create(interact)
               /*
-const inter = await guilda.commands.create(interact)
-              inter.permissions.set({
+ q            inter.permissions.set({
                 permissions: [
                   {
                     id: '731522255133081650',
@@ -142,12 +146,6 @@ const inter = await guilda.commands.create(interact)
                 ]
               })
 */
-            } else if (!globalConfigs.ednaldoServerCommands.includes(interact.name)) {
-              // !globalConfigs.disallowedCommandsDisable.includes(interact.name)
-              await this.application.commands.create(interact)
-              console.log(interact.name)
-            } else {
-              await guilda.commands.create(interact)
               console.log('Ednaldo Pereira Server:', interact.name)
             }
           } catch(e) {
@@ -156,6 +154,8 @@ const inter = await guilda.commands.create(interact)
           }
         }
       }
+
+  
       console.log("Interações carregadas")
     } catch(e) {
       console.error(e)

@@ -1,5 +1,5 @@
 const Interaction = require('../../Structures/Interaction.js')
-const { Embed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class AttackInteraction extends Interaction {
   constructor() {
@@ -28,7 +28,7 @@ module.exports = class AttackInteraction extends Interaction {
 
     return await interaction.reply({
       embeds: [
-        new Embed({
+        new EmbedBuilder({
           title: "Morra?!!",
           description: `${interaction.member.displayName} atacou com tudo ${args.getMember('membro').displayName}`,
           image: {

@@ -1,5 +1,5 @@
 const Interaction = require('../../Structures/Interaction.js')
-const { ActionRow, ButtonComponent, Permissions } = require("discord.js")
+const { ActionRowBuilder, ButtonBuilder, Permissions } = require("discord.js")
 
 module.exports = class KickInteraction extends Interaction {
   constructor() {
@@ -25,17 +25,17 @@ module.exports = class KickInteraction extends Interaction {
       return interaction.reply({ content: 'Meu cargo é inferior ao membro que você quer chutar!', ephemeral: true })
     }
 
-    let row = new ActionRow({
+    let row = new ActionRowBuilder({
       components: 
         [
-          new ButtonComponent({
+          new ButtonBuilder({
             customId: "sim",
             label: "Sim",
             styles: "SUCCES",
             emoji: "✅"
           }),
           
-          new ButtonComponent({
+          new ButtonBuilder({
             customId: "não",
             label: "Não",
             styles: "DANGER",
@@ -52,7 +52,7 @@ module.exports = class KickInteraction extends Interaction {
     //guild.channels.cache.get(interaction.channelId)
     const collector = channel?.createMessageComponentCollector({
       filter, max: 1
-    })
+    });
     collector.on('collect', async i => {
       if (i.customId === 'sim') {
         await i.update({

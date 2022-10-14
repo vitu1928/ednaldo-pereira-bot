@@ -1,5 +1,5 @@
 const Interaction = require('../../Structures/Interaction.js')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class ServerInfoInteraction extends Interaction {
   constructor() {
@@ -11,28 +11,77 @@ module.exports = class ServerInfoInteraction extends Interaction {
     })
   }
 
-  async execute({ interaction, args, client }) {
-    const iG = interaction.guild
+  async execute({ interaction, client }) {
+    const { guild: iG } = interaction
     
     return await interaction.reply({
       embeds: [
-        new MessageEmbed()
-          .setTitle("Server info")
-          .addField("Nome do server 🎗️", `${iG.name}`)
-          .addField("Id do server 🆔", `${iG.id}`, true)
-          .addField("Patrão do server 👑", `${iG.owner}`, true)
-          .addField("Membros 👥", `${iG.memberCount}`, true)
-          .addField("Núm. de cargos do server 🔐", `${iG.roles.cache.size}`, true)
-          .addField("Canais 💬", `  ${iG.channels.cache.filter(r => r.type === "text").size} Texto
-            ${iG.channels.cache.filter(r => r.type === "voice").size} Voz`, true)
-          .addField("Região do server 🌍", `${iG.region}`, true)  
-          .addField("Level de verificação 📑", `${iG.verificationLevel}`, true)
-          .addField("Criado em 📆 ", `${iG.createdAt.toLocaleString('pt-br')}`, true)
-          .addField("Boosts ✨", `${iG.premiumSubscriptionCount}`, true)
-          .addField("Emojis ☺", `${iG.emojis.cache.size}`, true)
-          .setColor("#2F3136")
-          .setThumbnail(interaction.guild.iconURL({ dynamic: true }))
-          .setImage(interaction.guild.bannerURL({ format: 'png' }) ?? "")
+        new EmbedBuilder({
+          title: "Server info",
+          fields: [
+            {
+              name: "Nome do server 🎗️", 
+              value: `${iG.name}`
+            },
+            {
+              name: "Id do server 🆔", 
+              value: `${iG.id}`, 
+              inline: true
+            },
+            {
+              name: "Patrão do server 👑", 
+              value: `${iG.owner}`, 
+              inline: true
+            },
+            {
+              name: "Membros 👥", 
+              value: `${iG.memberCount}`, 
+              inline: true
+            },
+            {
+              name: "Núm. de cargos do server 🔐", 
+              value: `${iG.roles.cache.size}`, 
+              inline: true
+            },
+            {
+              name: "Canais 💬",
+              value: `${iG.channels.cache.filter(r => r.type === "text").size} Texto ${iG.channels.cache.filter(r => r.type === "voice").size} Voz`,
+              inline: true
+            },
+            {
+              name: "Região do server 🌍",
+              value: `${iG.region}`,
+              inline: true
+            },
+            {
+              name: "Level de verificação 📑",
+              value: `${iG.verificationLevel}`,
+              inline: true
+            },
+            {
+              name: "Criado em 📆 ",
+              value: `${iG.createdAt.toLocaleString('pt-br')}`,
+              inline: true
+            },
+            {
+              name: "Boosts ✨",
+              value: `${iG.premiumSubscriptionCount}`,
+              inline: true
+            },
+            {
+              name: "Emojis ☺" ,
+              value: `${iG.emojis.cache.size}`,
+              inline: true
+            }
+          ],
+          color: 3092790,
+          thumbnail: {
+            url: interaction.guild.iconURL({ dynamic: true })
+          },
+          image: {
+            url: interaction.guild.bannerURL({ format: 'png' }) ?? ""
+          }
+        })          
       ]
     })
   }

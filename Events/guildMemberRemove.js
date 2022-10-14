@@ -1,4 +1,4 @@
-const { MessageAttachment, MessageEmbed } = require("discord.js")
+const { AttachmentBuilder, EmbedBuilder } = require("discord.js")
 const { loadImage, createCanvas, registerFont } = require('canvas')
 
 const Event = require('../Structures/Event.js')
@@ -49,15 +49,18 @@ module.exports = class extends Event {
     const avatar = await loadImage(member.user.displayAvatarURL({ format: 'jpg' }))
     ctx.drawImage(avatar, 25, 25, 200, 200)
   
-    const attachment = new MessageAttachment(canvas.toBuffer(), 'adeus.png')
+    const attachment = new AttachmentBuilder(canvas.toBuffer(), 'adeus.png')
   
     return await channel.send({
       embeds: [
-        new MessageEmbed()
-          .setDescription(`Você sempre estará conosco, ${member.displayName}`)
-          .setImage('attachment://adeus.png')
+        new EmbedBuilder({
+          description: `Você sempre estará conosco, ${member.displayName}`,
+          image: {
+            url: 'attachment://adeus.png'
+          }
+        })
       ],
-      fiiles: [attachment]
+      files: [attachment]
     })
   }
 }

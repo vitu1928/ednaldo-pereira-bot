@@ -1,5 +1,5 @@
 const Interaction = require('../../Structures/Interaction.js')
-const { Embed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class AvatarInteraction extends Interaction {
   constructor() {
@@ -77,8 +77,8 @@ module.exports = class AvatarInteraction extends Interaction {
 
     await interaction.followUp({
       embeds: [
-        new Embed({
-          title: user.username,
+        new EmbedBuilder({
+          title: `:frame_photo: ${user.username}`,
           description: `
         > [webp](${avatar('webp')})
         > [png](${avatar('png')})
@@ -89,7 +89,7 @@ module.exports = class AvatarInteraction extends Interaction {
             url: avatar('png')
           },
 
-          hexColor: '#2F3136'
+          color: 3092790
         })
       ]
     })

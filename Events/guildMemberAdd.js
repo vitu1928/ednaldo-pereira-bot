@@ -1,4 +1,4 @@
-const { MessageAttachment, MessageEmbed } = require('discord.js')
+const { AttachmentBuilder, EmbedBuilder } = require('discord.js')
 const { loadImage, createCanvas, registerFont } = require('canvas')
 
 const Event = require('../Structures/Event.js')
@@ -51,17 +51,17 @@ module.exports = class extends Event {
     const avatar = await loadImage(member.user.displayAvatarURL({ format: 'jpg' }))
     ctx.drawImage(avatar, 25, 25, 200, 200)
 
-    const attachment = new MessageAttachment(canvas.toBuffer(), 'welcome-image.png')
+    const attachment = new AttachmentBuilder(canvas.toBuffer(), 'welcome-image.png')
 
     return await channel.send({
       embeds: [
-          new MessageEmbed()
-        .setTitle('Seja bem vindo')
-        .setDescription(`Esse server foi feito em homenagem ao mestre<:ednaldoexclua:776961021122314290> antes de continuar passe em <#776940407396630528>, ${member}!`)
-        .setFooter('Ednaldo Pereira mestre', 'https://cdn.discordapp.com/emojis/799809829774295081.gif?v=1')
-        .setImage('attachment://welcome-image.png')
-        .setTimestamp()
-        .setColor('#BBCC2E')
+          new EmbedBuilder({
+            title: "Seja bem vindo",
+            description: `Esse server foi feito em homenagem ao mestre<:ednaldoexclua:776961021122314290> antes de continuar passe em <#776940407396630528>, ${member}!`,
+            footer : ['Ednaldo Pereira mestre', 'https://cdn.discordapp.com/emojis/799809829774295081.gif?v=1'],
+            image: { url: "attachment://welcome-image.png" },
+            color: 12307502
+          })
       ],
       files: [attachment]
     })

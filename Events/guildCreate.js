@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class extends Event {
   constructor(client) {
@@ -11,7 +11,7 @@ module.exports = class extends Event {
       const hora = new Date().getHours()
       await guild.systemChannel.send({
         embeds: [
-          new MessageEmbed({
+          new EmbedBuilder({
             title: hora < 12 ? "Bom dia" : hora < 18 ? "Boa tarde" : "Boa noite",
             description: "<:Deus:808091805743579226> bem galera, agora sou um bot do discord",
             author: {
@@ -30,7 +30,7 @@ module.exports = class extends Event {
             image: {
               url: "https://c.tenor.com/hRyeNMzgoZsAAAAM/ednaldopereira-ednaldopereiramb.gif"
             },
-            color: '#2F3136',
+            color: 3092790,
             footer: {
               text: `Online desde ${new Date(client.readyTimestamp).toLocaleString(guild?.preferredLocale||'pt-br')}`
             }

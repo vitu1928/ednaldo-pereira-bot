@@ -1,5 +1,5 @@
 const Interaction = require('../../Structures/Interaction.js')
-const { Embed, SelectMenu, ActionRow } = require('discord.js')
+const { EmbedBuilder, SelectMenuBuilder, ActionRowBuilder } = require('discord.js')
 
 module.exports = class HelpInteraction extends Interaction {
   constructor() {
@@ -12,7 +12,7 @@ module.exports = class HelpInteraction extends Interaction {
   }
 
   async execute({ interaction, client }) {
-      const menu = new SelectMenu({
+      const menu = new SelectMenuBuilder({
         customId: 'menuAjuda',
         minValues: 1,
         maxValues: 1,
@@ -33,18 +33,18 @@ module.exports = class HelpInteraction extends Interaction {
         ]
       })
 
-      const row = new ActionRow({
+      const row = new ActionRowBuilder({
         components: [ menu ]
       })
 
       await interaction.reply({
         embeds: [
-          new Embed({
+          new EmbedBuilder({
             title: "Ednaldo Pereira Bot",
             image: {
               url: 'https://studiosol-a.akamaihd.net/uploadfile/letras/fotos/c/4/e/9/c4e987143a79ddc7769d979b49d86456.jpg'
             },
-            color: '#393D52'
+            color: 3751250
           })
         ],
         components: [
@@ -62,7 +62,7 @@ module.exports = class HelpInteraction extends Interaction {
       let inline = true
       
       const embeds = {
-        serverinfo: new Embed({
+        serverinfo: new EmbedBuilder({
           title: "Serverinfo",
           description: guild.description,
           thumbnail: {
@@ -152,13 +152,13 @@ module.exports = class HelpInteraction extends Interaction {
               inline
             }
           ],
-          hexColor: member.displayHexColor ?? '#393D52'
+          color: member.displayColor ?? 3751250
         }),
 
-        interacoes: new Embed({
+        interacoes: new EmbedBuilder({
           title: "Interações",
           description: `Escolha a interação que você precisa de ajuda!`,
-          color: "#393D52"
+          color: 3751250
         })
       }
 
@@ -171,7 +171,7 @@ module.exports = class HelpInteraction extends Interaction {
           let i = 0
           do {
             menus.push(
-              new SelectMenu({
+              new SelectMenuBuilder({
                 customId: 'menuInteractions',
                 minValues: 1,
                 maxValues: 1,
@@ -197,27 +197,26 @@ module.exports = class HelpInteraction extends Interaction {
       
       const collector = message.createMessageComponentCollector({
         idle: 60000*5,
-        filter: (i) => i.customId === 'menuAjuda'
+        filter: async (i) => i.customId === 'menuAjuda' 
       })
 
       collector.on('collect', async (i) => {
         const value = i.values[0]
-        const component = components[value].at(0) ? [new ActionRow({ components: [...components[value]] })] : [];
+        const component = components[value].at(0) ? [new ActionRowBuilder({ components: [...components[value]] })] : [];
         
-        await i.reply({
+        const mes = await i.reply({
           ephemeral: true,
           embeds: [
-            embeds [value],
+            embeds[value],
           ],
           components: component,
           fetchReply: true
         })
 
-        const mes = await i.fetchReply()
 
         const ephemeralCollector = mes.channel.createMessageComponentCollector({
-          componentType: "SELECT_MENU",
-          filter: (i) => i.customId === 'menuInteractions'
+          componentType: 3,
+          filter: (i) => i.customId === 'menuInteractions' 
         })
 
         ephemeralCollector.on('collect', async (i) => {
@@ -229,9 +228,9 @@ module.exports = class HelpInteraction extends Interaction {
             "3": 'Message, clique nos três pontinhos em alguma mensagem para ver as funções disponíveis'
           }
 
-          return await i.reply({
+          return await i?.reply({
             embeds: [
-              new Embed({
+              new EmbedBuilder({
                 title: interactCommand.name,
                 description: interactCommand.description,
                 fields: [
@@ -245,10 +244,11 @@ module.exports = class HelpInteraction extends Interaction {
                     value: `\`\`\`md\n${interactCommand.options.map(int => `- ${int.name}: ${int.description}`).join('\n') || "..."}\`\`\``
                   }
                 ],
-                color: '#393D52'
+                color: 3751250
               })
             ],
-            ephemeral: true
+            ephemeral: true,
+            fetchReply: true
           }).catch(console.error)
         })
       })

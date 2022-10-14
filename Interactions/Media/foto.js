@@ -1,5 +1,5 @@
 const Interaction = require('../../Structures/Interaction.js')
-const { Embed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class FotoInteraction extends Interaction {
   constructor() {
@@ -36,11 +36,11 @@ module.exports = class FotoInteraction extends Interaction {
 
       await interaction.reply({
         embeds: [
-          new Embed({
+          new EmbedBuilder({
             title: "Mestre Ednaldo Pereira e seu grandioso rosto",
             url: list[row.valor],
             image: { url: list[row.valor] },
-            hexColor: "#EA7200"
+            color: 15364608
           })
         ]
       })

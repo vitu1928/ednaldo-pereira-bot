@@ -1,5 +1,5 @@
 const Interaction = require('../../Structures/Interaction.js')
-const { Attachment } = require('discord.js')
+const { AttachmentBuilder } = require('discord.js')
 
 module.exports = class HojeeInteraction extends Interaction {
   constructor() {
@@ -14,7 +14,7 @@ module.exports = class HojeeInteraction extends Interaction {
   async execute({ interaction }) {
     return await interaction.reply({
       files: [
-        new Attachment([
+        new AttachmentBuilder([
           'https://img.ifunny.co/videos/ad953fb171fb8be0bb357b964e0962f54c03a4905b6ce715aaad13e7f7f1b297_1.mp4',
           'https://img.ifunny.co/videos/678ccbbc172e6c8e9443d025057664f9fe30c601caacadbaa4822fe32aaf86ff_1.mp4',
           'https://img.ifunny.co/videos/0ec7d3e97d6eb1f5fb172d864efbafff600cdf4dca7eb3590adcdf7037c51f3f_1.mp4',
